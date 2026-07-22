@@ -11,30 +11,45 @@
       </tr>
     </thead>
     <tbody>
-      @for (country of countries(); track country.codes.ccn3; let index = $index) {
+      @for (country of countries(); track country.fifaCode; let index = $index) {
       <tr>
         <td>{{ index + 1 }}</td>
         <td>
           <div class="flex items-center gap-3">
             <div class="avatar">
               <div class="mask mask-squircle h-12 w-12">
-                <img [src]="country.flag.url_svg" [alt]="country.names.common" />
+                <img [src]="country.flagSvg" [alt]="country.name" />
               </div>
             </div>
             <div>
-              <div class="font-bold">{{ country.names.common }}</div>
+              <div class="font-bold">{{ country.name }}</div>
               <div class="text-sm opacity-50">{{ country.region }}</div>
             </div>
           </div>
         </td>
         <td>
-          {{ country.capitals[0].name }}
+          {{ country.capital.name }}
           <br />
-          <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+          <span class="badge badge-ghost badge-sm">
+            {{
+            country.capital.latitude < 0 
+            ? `${-country.capital.latitude}° S` 
+            : `${country.capital.latitude}° N` 
+            }}
+            {{
+            country.capital.longitude < 0 
+            ? `${-country.capital.longitude}° O` 
+            : `${country.capital.longitude}° E` 
+            }}
+          </span>
         </td>
-        <td>{{ country.population }}</td>
+        <td>
+          <span class="badge badge-secondary">
+            {{ country.population | number }}
+          </span>
+        </td>
         <th>
-          <a class="link-primary cursor-pointer">Más información</a>
+          <a [routerLink]="['/country/by', country.fifaCode]" class="link-primary cursor-pointer">Más información</a>
         </th>
       </tr>
       }

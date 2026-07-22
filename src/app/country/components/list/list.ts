@@ -1,11 +1,13 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { RestCountry } from '../../interfaces/rest-countries.interface';
+import { Component, input } from '@angular/core';
+import { Country } from '../../interfaces/country.interface';
+import { DecimalPipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'country-list',
-  imports: [],
+  imports: [DecimalPipe, RouterLink],
   templateUrl: './list.html'
 })
 export class List {
-  countries = input.required<RestCountry[]>();
+  countries = input.required<Country[]>();
 }
