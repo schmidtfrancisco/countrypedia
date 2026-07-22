@@ -1,0 +1,53 @@
+<section class="overflow-x-auto mt-4">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Capital</th>
+        <th>Población</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (country of countries(); track country.codes.ccn3; let index = $index) {
+      <tr>
+        <td>{{ index + 1 }}</td>
+        <td>
+          <div class="flex items-center gap-3">
+            <div class="avatar">
+              <div class="mask mask-squircle h-12 w-12">
+                <img [src]="country.flag.url_svg" [alt]="country.names.common" />
+              </div>
+            </div>
+            <div>
+              <div class="font-bold">{{ country.names.common }}</div>
+              <div class="text-sm opacity-50">{{ country.region }}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ country.capitals[0].name }}
+          <br />
+          <span class="badge badge-ghost badge-sm">Desktop Support Technician</span>
+        </td>
+        <td>{{ country.population }}</td>
+        <th>
+          <a class="link-primary cursor-pointer">Más información</a>
+        </th>
+      </tr>
+      }
+    </tbody>
+    <!-- foot -->
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+        <th></th>
+      </tr>
+    </tfoot>
+  </table>
+</section>
