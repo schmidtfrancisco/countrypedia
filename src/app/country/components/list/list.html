@@ -32,16 +32,9 @@
           <br />
           <span class="badge badge-ghost badge-sm">
             {{
-            country.capital.latitude < 0 
-            ? `${-country.capital.latitude}° S` 
-            : `${country.capital.latitude}° N` 
-            }}
-            {{
-            country.capital.longitude < 0 
-            ? `${-country.capital.longitude}° O` 
-            : `${country.capital.longitude}° E` 
-            }}
-          </span>
+            country.capital.latitude < 0 ? `${-country.capital.latitude}° S` : `${country.capital.latitude}° N` }} {{
+              country.capital.longitude < 0 ? `${-country.capital.longitude}° O` : `${country.capital.longitude}° E` }}
+              </span>
         </td>
         <td>
           <span class="badge badge-secondary">
@@ -53,16 +46,29 @@
         </th>
       </tr>
       }
-    </tbody>
-    <!-- foot -->
-    <tfoot>
+      @if (errorMessage()) {
       <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-        <th></th>
+        <td colspan="5" class="text-center">
+          {{ errorMessage()?.message }}
+        </td>
       </tr>
-    </tfoot>
+      }
+
+      @if (countries.length === 0 && !isLoading()) {
+      <tr>
+        <td colspan="5" class="text-center">
+          No se encontraron países
+        </td>
+      </tr>
+      }
+
+      @if (isLoading()) {
+        <tr>
+        <td colspan="5" class="text-center">
+          Buscando países
+        </td>
+      </tr>
+      }
+    </tbody>
   </table>
 </section>
