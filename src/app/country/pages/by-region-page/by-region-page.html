@@ -1,1 +1,17 @@
-<!-- //<country-list /> -->
+<section class="flex gap-2">
+@for (region of regions; track region) {
+  <button 
+    class="btn btn-neutral"
+    [class.btn-primary]="region === this.selectedRegion()"
+    (click)="selectedRegion.set(region)"
+  >
+    {{ region }}
+  </button>
+}
+</section>
+<country-list 
+  [countries]="countryResource.value() ?? []" 
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>

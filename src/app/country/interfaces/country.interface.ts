@@ -1,5 +1,5 @@
 export interface Country {
-  fifaCode: string;
+  code: string;
   name: string;
   capital: Capital;
   region: string;

@@ -10,15 +10,15 @@ export class CountryMapper {
     }
 
     const countryCurrency: Currency = {
-      code: restCountry.currencies[0].code,
-      symbol: restCountry.currencies[0].symbol,
-      name: restCountry.currencies[0].name
+      code: restCountry.currencies[0]?.code ?? 'No info.',
+      symbol: restCountry.currencies[0]?.symbol ?? 'No info',
+      name: restCountry.currencies[0]?.name ?? 'No info'
     }
 
     const countryLanguages = restCountry.languages.map((lng) => ({ name: lng.name, nativeName: lng.native_name }));
     
     return {
-      fifaCode: restCountry.codes.fifa,
+      code: restCountry.codes.alpha_3,
       name: restCountry.names.translations['spa'].common ?? restCountry.names.common,
       capital: countryCapital,
       region: restCountry.region,

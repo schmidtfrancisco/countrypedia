@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (country of countries(); track country.fifaCode; let index = $index) {
+      @for (country of countries(); track country.code; let index = $index) {
       <tr>
         <td>{{ index + 1 }}</td>
         <td>
@@ -42,7 +42,7 @@
           </span>
         </td>
         <th>
-          <a [routerLink]="['/country/by', country.fifaCode]" class="link-primary cursor-pointer">Más información</a>
+          <a [routerLink]="['/country/by', country.code]" class="link-primary cursor-pointer">Más información</a>
         </th>
       </tr>
       }
@@ -54,7 +54,7 @@
       </tr>
       }
 
-      @if (countries.length === 0 && !isLoading()) {
+      @if (countries().length === 0 && !isLoading()) {
       <tr>
         <td colspan="5" class="text-center">
           No se encontraron países
@@ -64,8 +64,9 @@
 
       @if (isLoading()) {
         <tr>
-        <td colspan="5" class="text-center">
+        <td colspan="5" class="text-center font-semibold">
           Buscando países
+          <span class="loading loading-dots loading-lg ml-2"></span>
         </td>
       </tr>
       }
